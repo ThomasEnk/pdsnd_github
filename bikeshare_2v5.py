@@ -91,8 +91,8 @@ def load_data(city, month, day):
     df['day_of_week'] = df['Start Time'].dt.day_name()
     df['hour'] = df['Start Time'].dt.hour
 
-    # make a column of the tour between start station and end stations
-    df['Tour'] = df['Start Station'] + ' to ' + df['End Station']
+    # make a column of the trip between start station and end stations
+    df['Trip'] = df['Start Station'] + ' to ' + df['End Station']
 
     # filter by month if applicable
     if month != 'all':
@@ -144,7 +144,7 @@ def station_stats(df):
     print('The most common end station is:', df['End Station'].mode()[0])
 
     # display most frequent combination of start station and end station trip
-    print('The most frequent combination of start station and end station trip is:', df['Tour'].mode()[0])
+    print('The most frequent combination of start station and end station trip is:', df['Trip'].mode()[0])
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
@@ -190,7 +190,7 @@ def user_stats(df):
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
-def raw_data(df):
+def display_raw_data(df):
     """Displays raw datas."""
 
     #Ask if you want raw data to be displayed
@@ -223,7 +223,7 @@ def main():
         station_stats(df)
         trip_duration_stats(df)
         user_stats(df)
-        raw_data(df)
+        display_raw_data(df)
 
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
